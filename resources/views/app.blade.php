@@ -8,7 +8,7 @@
     @inertiaHead
 </head>
 
-<body>
+<body class="w-full h-full">
     @inertia
 </body>
 
