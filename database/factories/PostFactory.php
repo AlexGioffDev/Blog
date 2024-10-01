@@ -19,6 +19,7 @@ class PostFactory extends Factory
     {
         return [
             'title' => fake()->sentence(),
+            'image_url' => $this->getUniquePicsumUrl(),
             'body' => fake()->paragraph(5),
         ];
     }
@@ -28,5 +29,14 @@ class PostFactory extends Factory
         return $this->state([
             'user_id' => $userId,
         ]);
+    }
+
+    private function getUniquePicsumUrl(): string
+    {
+        $width = 640;
+        $height = 480;
+        $randomId = $this->faker->numberBetween(1, 1000);
+
+        return "https://picsum.photos/seed/{$randomId}/{$width}/{$height}";
     }
 }

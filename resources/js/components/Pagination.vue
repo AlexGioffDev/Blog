@@ -1,5 +1,5 @@
 <template>
-    <div v-if="links.length > 2" class="flex justify-between">
+    <div v-if="links.length > 2" class="flex justify-between items-center">
         <Link
             v-if="links[0].url"
             :href="links[0].url"
@@ -8,6 +8,7 @@
         >
             &laquo; Previous
         </Link>
+        <div class="flex-grow" />
         <Link
             v-if="links[links.length - 1].url"
             :href="links[links.length - 1].url"
