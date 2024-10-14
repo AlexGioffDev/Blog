@@ -20,7 +20,6 @@ class CommentFactory extends Factory
     {
         return [
             'body' => fake()->sentence(),
-
         ];
     }
 

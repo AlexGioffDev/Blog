@@ -24,12 +24,21 @@ class DatabaseSeeder extends Seeder
 
         $posts = Post::factory(20)->create(['user_id' => $admin->id]);
 
+
         foreach ($posts as $post) {
+
+            // get all user that are mods or simple user
             $all = $mods->concat($users);
 
-            $numComments = rand(5, 10);
+            // get random number for create n comments
+            $numComments = rand(0, 15);
+
+            if ($numComments < 6) {
+                $numComments = 0;
+            }
 
             for ($i = 0; $i < $numComments; $i++) {
+                // get a random user from the all variable
                 $user = $all->random();
                 Comment::factory()->forPostAndUser($post->id, $user->id)->create();
             }

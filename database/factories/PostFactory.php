@@ -18,9 +18,9 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->sentence(),
+            'title' => fake()->sentence(3),
             'image_url' => $this->getUniquePicsumUrl(),
-            'body' => fake()->paragraph(5),
+            'body' => fake()->paragraph(20),
         ];
     }
 
