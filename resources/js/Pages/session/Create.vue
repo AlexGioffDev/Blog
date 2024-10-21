@@ -3,18 +3,6 @@
         <div class="p-5 border border-teal-600 rounded-lg">
             <form class="flex flex-col gap-3" @submit.prevent="submit">
                 <div class="flex items-center justify-between gap-3">
-                    <label for="username">Username: </label>
-                    <input
-                        class="border border-teal-700 py-1 px-4 rounded-lg"
-                        id="username"
-                        name="username"
-                        type="text"
-                        required
-                        v-model="form.username"
-                    />
-                </div>
-
-                <div class="flex items-center justify-between gap-3">
                     <label for="email">Email: </label>
                     <input
                         class="border border-teal-700 py-1 px-4 rounded-lg"
@@ -57,13 +45,12 @@ import { reactive } from "vue";
 const page = usePage();
 
 const form = reactive({
-    username: null,
     email: null,
     password: null,
 });
 
 function submit() {
-    router.post("/register", {
+    router.post("/login", {
         _token: page.props.csrf_token,
         form,
     });

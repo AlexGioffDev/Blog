@@ -26,7 +26,6 @@ class AuthController extends Controller
 
         $user = User::create($validateData['form']);
 
-
         Auth::login($user);
 
         return redirect('/');

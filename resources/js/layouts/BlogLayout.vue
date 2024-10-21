@@ -8,6 +8,11 @@
             <a href="/register">Register</a>
             <a href="/login">Login</a>
         </div>
+        <div v-else>
+            <form @submit.prevent="submit">
+                <button type="submit" href="/logout">Logout</button>
+            </form>
+        </div>
     </header>
     <main class="max-w-7xl mx-auto mt-5">
         <slot />
@@ -20,9 +25,15 @@
 
 <script setup>
 import { computed } from "vue";
-import { usePage } from "@inertiajs/vue3";
+import { router, usePage } from "@inertiajs/vue3";
 
 const page = usePage();
+
+function submit() {
+    router.post("/logout", {
+        _token: page.props.csrf_token,
+    });
+}
 
 const user = computed(() => page.props.auth.user);
 </script>

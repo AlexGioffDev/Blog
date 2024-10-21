@@ -1,6 +1,4 @@
 <template>
-    <Pagination class="mt-4 px-8" :links="posts.links" />
-
     <div
         class="mt-4 grid md:grid-cols-3 gap-16 max-h-[75vh] overflow-y-auto p-5"
     >
@@ -68,6 +66,7 @@
             </div>
         </div>
     </div>
+    <Pagination class="mt-4 px-8" :links="posts.links" />
 </template>
 
 <script setup>
