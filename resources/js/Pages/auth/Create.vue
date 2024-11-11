@@ -2,41 +2,28 @@
     <div class="flex items-center justify-center p-4 w-full h-[50rem]">
         <div class="p-5 border border-teal-600 rounded-lg">
             <form class="flex flex-col gap-3" @submit.prevent="submit">
-                <div class="flex items-center justify-between gap-3">
-                    <label for="username">Username: </label>
-                    <input
-                        class="border border-teal-700 py-1 px-4 rounded-lg"
-                        id="username"
-                        name="username"
-                        type="text"
-                        required
-                        v-model="form.username"
-                    />
-                </div>
+                <Input
+                    v-model="form.username"
+                    id="username"
+                    name="username"
+                    label="Username: "
+                />
 
-                <div class="flex items-center justify-between gap-3">
-                    <label for="email">Email: </label>
-                    <input
-                        class="border border-teal-700 py-1 px-4 rounded-lg"
-                        id="email"
-                        name="email"
-                        type="email"
-                        required
-                        v-model="form.email"
-                    />
-                </div>
+                <Input
+                    v-model="form.email"
+                    id="email"
+                    name="email"
+                    type="email"
+                    label="Email: "
+                />
 
-                <div class="flex items-center justify-between gap-3">
-                    <label for="password">Password: </label>
-                    <input
-                        class="border border-teal-700 py-1 px-4 rounded-lg"
-                        id="password"
-                        name="password"
-                        type="password"
-                        required
-                        v-model="form.password"
-                    />
-                </div>
+                <Input
+                    v-model="form.password"
+                    id="password"
+                    name="password"
+                    label="Password: "
+                    type="password"
+                />
 
                 <button
                     type="submit"
@@ -50,9 +37,11 @@
 </template>
 
 <script setup>
-import BlogLayout from "../../layouts/BlogLayout.vue";
 import { router, usePage } from "@inertiajs/vue3";
 import { reactive } from "vue";
+
+import BlogLayout from "../../layouts/BlogLayout.vue";
+import Input from "../../components/Input/Input.vue";
 
 const page = usePage();
 

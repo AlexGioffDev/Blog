@@ -2,29 +2,21 @@
     <div class="flex items-center justify-center p-4 w-full h-[50rem]">
         <div class="p-5 border border-teal-600 rounded-lg">
             <form class="flex flex-col gap-3" @submit.prevent="submit">
-                <div class="flex items-center justify-between gap-3">
-                    <label for="email">Email: </label>
-                    <input
-                        class="border border-teal-700 py-1 px-4 rounded-lg"
-                        id="email"
-                        name="email"
-                        type="email"
-                        required
-                        v-model="form.email"
-                    />
-                </div>
+                <Input
+                    label="Email: "
+                    id="email"
+                    name="email"
+                    v-model="form.email"
+                    type="email"
+                />
 
-                <div class="flex items-center justify-between gap-3">
-                    <label for="password">Password: </label>
-                    <input
-                        class="border border-teal-700 py-1 px-4 rounded-lg"
-                        id="password"
-                        name="password"
-                        type="password"
-                        required
-                        v-model="form.password"
-                    />
-                </div>
+                <Input
+                    label="Password: "
+                    id="password"
+                    name="password"
+                    v-model="form.password"
+                    type="password"
+                />
 
                 <button
                     type="submit"
@@ -39,6 +31,8 @@
 
 <script setup>
 import BlogLayout from "../../layouts/BlogLayout.vue";
+import Input from "../../components/Input/Input.vue";
+
 import { router, usePage } from "@inertiajs/vue3";
 import { reactive } from "vue";
 

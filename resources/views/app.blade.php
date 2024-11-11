@@ -9,7 +9,7 @@
     <title>Byte Bistro</title>
 </head>
 
-<body class="w-full h-full">
+<body class="w-full h-full overflow-y-hidden">
     @inertia
 </body>
 

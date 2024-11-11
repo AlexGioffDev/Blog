@@ -8,9 +8,22 @@
             <a href="/register">Register</a>
             <a href="/login">Login</a>
         </div>
-        <div v-else>
+        <div class="flex gap-x-4 items-center" v-else>
+            <p class="text-md">
+                Hello,
+                <span class="italic text-purple-700 capitalize">{{
+                    user.username
+                }}</span>
+            </p>
+            <a v-if="user['role'] == 'ADMIN'" href="/dashboard">Dashboard</a>
             <form @submit.prevent="submit">
-                <button type="submit" href="/logout">Logout</button>
+                <button
+                    class="bg-white rounded-xl py-1 px-2 text-purple-900 border border-purple-900 hover:text-white hover:bg-purple-900 transition-all duration-300 cursor-pointer"
+                    type="submit"
+                    href="/logout"
+                >
+                    Logout
+                </button>
             </form>
         </div>
     </header>

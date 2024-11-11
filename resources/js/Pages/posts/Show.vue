@@ -21,6 +21,7 @@
         </div>
         <div
             class="border border-violet-800 rounded-lg p-4 max-h-[85vh] flex flex-col"
+            v-if="auth.user || post.comments.length > 0"
         >
             <div
                 class="flex-1 overflow-y-auto flex flex-col gap-3 pb-5"
@@ -44,7 +45,10 @@
                             <button
                                 v-if="
                                     auth['user'] &&
-                                    auth.user.id === comment.user.id
+                                    (auth.user.id === comment.user.id ||
+                                        ['ADMIN', 'MOD'].includes(
+                                            auth.user.role
+                                        ))
                                 "
                                 class="text-sm text-rose-700"
                             >
@@ -62,10 +66,18 @@
                 v-if="post.comments.length > 0"
                 class="w-full h-1 bg-violet-900"
             />
-            <div v-if="auth" class="mt-4 h-40">
-                <form @submit.prevent="submit">
-                    <textarea v-model="form.body"></textarea>
-                    <button type="submit">Send</button>
+            <div v-if="auth.user" class="mt-4 h-40">
+                <form @submit.prevent="submit" class="flex flex-col gap-y-4">
+                    <textarea
+                        class="border-2 border-purple-400 rounded-lg p-4 resize-none max-w-full min-h-28 max-h-28 focus:outline-purple-700"
+                        v-model="form.body"
+                    ></textarea>
+                    <button
+                        class="bg-purple-950 w-20 self-end rounded-xl text-white"
+                        type="submit"
+                    >
+                        Send
+                    </button>
                 </form>
                 <p v-if="errors['form.body']">
                     {{ errors }}
@@ -78,7 +90,7 @@
 <script setup>
 import BlogLayout from "../../layouts/BlogLayout.vue";
 import { usePage, router } from "@inertiajs/vue3";
-import { computed, reactive } from "vue";
+import { reactive } from "vue";
 
 defineOptions({ layout: BlogLayout });
 const page = usePage();

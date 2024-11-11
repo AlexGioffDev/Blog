@@ -24,7 +24,7 @@ const bgColor = computed(() => {
         case "comments":
             return "bg-rose-800";
         default:
-            return "bg-violet-500";
+            return "bg-violet-800";
     }
 });
 </script>

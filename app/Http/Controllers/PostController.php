@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
 
 class PostController extends Controller
@@ -19,5 +20,16 @@ class PostController extends Controller
     {
         $post->load(['user:id,username,email', 'comments.user:id,username']);
         return Inertia::render('posts/Show', ['post' => $post]);
+    }
+
+    public function destroy(Post $post)
+    {
+
+        if (Gate::denies('only-admin')) {
+            return redirect('/');
+        }
+
+        $post->delete();
+        return redirect()->back();
     }
 }

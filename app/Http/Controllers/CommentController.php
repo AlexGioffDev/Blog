@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\ValidationException;
 
 class CommentController extends Controller
@@ -40,7 +41,7 @@ class CommentController extends Controller
         $comment = Comment::find($id);
 
         // Check if the comment exists and if the user is the owner
-        if ($comment && $comment->user_id == Auth::id()) {
+        if ($comment && ($comment->user_id == Auth::id() || Gate::allows('can-access'))) {
             // Delete the comment
             $comment->delete();
             // Redirect back with a success message
