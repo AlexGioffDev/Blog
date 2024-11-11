@@ -30,10 +30,6 @@
     <main class="max-w-7xl mx-auto mt-5">
         <slot />
     </main>
-
-    <footer class="fixed bottom-0 w-full">
-        <p>&copy; {{ new Date().getFullYear() }} Byte Bistro</p>
-    </footer>
 </template>
 
 <script setup>

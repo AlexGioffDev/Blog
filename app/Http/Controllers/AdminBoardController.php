@@ -34,6 +34,35 @@ class AdminBoardController extends Controller
         return redirect()->back();
     }
 
+    public function create()
+    {
+        return Inertia::render("AdminBoard/create");
+    }
+
+    public function store(Request $request)
+    {
+        if (Gate::denies('only-admin')) {
+            return redirect()->back();
+        }
+
+        $request->validate([
+            'form.title' => ['required', 'string', 'max:255'],
+            'form.image_url' => ['required', 'url'],  // Controlla che sia un URL valido
+            'form.body' => ['required', 'string'],
+        ]);
+
+
+        $post = new Post();
+        $post->title = $request->input('form.title');
+        $post->image_url = $request->input('form.image_url');
+        $post->body = $request->input('form.body');
+        $post->user_id = auth()->id();
+        $post->save();
+
+
+        return redirect('/dashboard');
+    }
+
     public function update(Request $request, User $user)
     {
         if (Gate::denies('only-admin')) {

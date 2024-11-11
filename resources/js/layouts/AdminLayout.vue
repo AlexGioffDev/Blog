@@ -10,14 +10,10 @@
         </div>
     </header>
     <div class="bg-slate-200 h-screen">
-        <main class="max-w-7xl mx-auto pt-8">
+        <main class="max-w-7xl mx-auto pt-8 max-h-[80%] overflow-auto">
             <slot />
         </main>
     </div>
-
-    <footer class="fixed bottom-0 w-full">
-        <p>&copy; {{ new Date().getFullYear() }} Byte Bistro</p>
-    </footer>
 </template>
 
 <script setup>

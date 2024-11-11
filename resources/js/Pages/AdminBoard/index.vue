@@ -1,16 +1,22 @@
 <template>
     <section class="flex flex-col gap-y-4">
-        <h2
-            class="p-y-4 border-b border-cyan-700 text-3xl uppercase font-bold text-cyan-900"
+        <div
+            class="flex justify-between py-2 items-center border-b border-cyan-700"
         >
-            Posts
-        </h2>
-        <div class="max-h-80 overflow-y-auto flex flex-col p-y-8">
+            <h2 class="text-3xl uppercase font-bold text-cyan-900">Posts</h2>
+            <a
+                href="/dashboard/create"
+                class="bg-violet-700 uppercase font-bold text-slate-200 text-sm p-2 rounded-xl"
+            >
+                New Post</a
+            >
+        </div>
+        <div class="max-h-80 overflow-y-auto flex flex-col py-8">
             <div
-                class="flex items-center justify-between even:bg-cyan-700 even:text-white p-8 border border-cyan-700 first:rounded-t-lg last:rounded-b-lg"
+                class="flex items-center text-sm justify-between even:bg-cyan-700 even:text-white p-8 border border-cyan-700 first:rounded-t-lg last:rounded-b-lg"
                 v-for="post in posts"
             >
-                <p>{{ post.title }}</p>
+                <p class="font-bold">{{ post.title }}</p>
                 <div class="flex gap-x-4">
                     <div v-if="isAdmin">
                         <form @submit.prevent="deletePost(post)">
@@ -22,18 +28,18 @@
         </div>
     </section>
 
-    <section v-if="isAdmin" class="flex flex-col gap-y-4 mt-10">
+    <section v-if="isAdmin" class="flex flex-col gap-y-4">
         <h2
-            class="p-y-4 border-b border-cyan-700 text-3xl uppercase font-bold text-cyan-900"
+            class="border-b py-2 border-cyan-700 text-3xl uppercase font-bold text-cyan-900"
         >
             Users
         </h2>
-        <div class="max-h-80 overflow-y-auto flex flex-col p-y-8">
+        <div class="max-h-80 overflow-y-auto flex flex-col py-8">
             <div
-                class="flex items-center justify-between even:bg-cyan-700 even:text-white p-8 border border-cyan-700 first:rounded-t-lg last:rounded-b-lg"
+                class="flex items-center text-sm justify-between even:bg-cyan-700 even:text-white p-8 border border-cyan-700 first:rounded-t-lg last:rounded-b-lg"
                 v-for="user in users"
             >
-                <p>{{ user.username }}</p>
+                <p class="font-bold">{{ user.username }}</p>
                 <div class="flex gap-3">
                     <div
                         v-if="
@@ -74,7 +80,6 @@
 <script setup>
 import AdminLayout from "../../layouts/AdminLayout.vue";
 import { usePage, router } from "@inertiajs/vue3";
-import { reactive } from "vue";
 
 const page = usePage();
 

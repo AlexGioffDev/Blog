@@ -26,6 +26,8 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [AdminBoardController::class, 'index']);
+    Route::get('/dashboard/create', [AdminBoardController::class, 'create']);
+    Route::post('/dashoboard/post/create', [AdminBoardController::class, 'store']);
     Route::post('/comment', [CommentController::class, 'store']);
     Route::delete('/comment/{id}', [CommentController::class, 'destroy']);
     Route::delete('/posts/{post}', [PostController::class, 'destroy']);
